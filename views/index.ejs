@@ -1,1 +1,27 @@
-<h1> Jabulani Kalomo</h1>
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+    <body>
+        <%- include('./partials/header') %>
+            <%- include('./partials/nav') %>
+
+                <main>
+                    <!-- Hero Section -->
+                    <section class="hero">
+                        <img src="/images/hero-car.jpg" alt="Featured car at CSE Motors">
+                        <h2>Welcome to CSE Motors</h2>
+                        <p>Your trusted dealership for sedans, SUVs, trucks, and custom cars.</p>
+                    </section>
+
+                    <!-- Call to Action -->
+                    <section class="cta">
+                        <h3>Looking for a new ride?</h3>
+                        <p>Check out our <a href="/inventory">latest inventory</a> today!</p>
+                    </section>
+                </main>
+
+                <%- include('./partials/footer') %>
+    </body>
+
+</html>
