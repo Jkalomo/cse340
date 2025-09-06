@@ -9,11 +9,23 @@ const express = require("express")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const path = require("path")
+
+/* ***********************
+ * View Engine and Views Folder
+ *************************/
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "ejs")
 
 /* ***********************
  * Routes
  *************************/
 app.use(static)
+
+// Index route
+app.get("/", function(req, res){
+  res.render("index", { title: "Home" })
+})
 
 /* ***********************
  * Local Server Information
