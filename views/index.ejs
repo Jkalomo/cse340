@@ -1,27 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<%- include('./partials/head') %>
+<!-- Hero Section -->
+<section class="hero-section">
+    <h1 class="hero-title">Welcome to CSE Motors</h1>
+    <p class="hero-description">
+        Your trusted partner in finding the perfect pre-owned vehicle.
+        We offer quality cars, transparent pricing, and exceptional customer service
+        that puts your needs first.
+    </p>
+    <a href="/inventory" class="cta-button">Browse Our Inventory</a>
+</section>
 
-    <body>
-        <%- include('./partials/header') %>
-            <%- include('./partials/navigation') %>
+<!-- Content Grid -->
+<div class="content-grid">
+    <article class="content-card">
+        <h2 class="card-title">Quality Vehicles</h2>
+        <div class="card-image">
+            <img src="/images/vehicles/camaro.jpg" alt="Quality certified pre-owned vehicles" loading="lazy">
+        </div>
+        <p class="card-description">
+            Every vehicle in our inventory undergoes thorough inspection and
+            reconditioning to ensure you get a reliable car that will serve you well for years to come.
+        </p>
+    </article>
 
-                <main>
-                    <!-- Hero Section -->
-                    <section class="hero">
-                        <img src="/images/hero-car.jpg" alt="Featured car at CSE Motors">
-                        <h2>Welcome to CSE Motors</h2>
-                        <p>Your trusted dealership for sedans, SUVs, trucks, and custom cars.</p>
-                    </section>
+    <article class="content-card">
+        <h2 class="card-title">Expert Service</h2>
+        <div class="card-image">
+            <img src="/images/upgrades/bumper_sticker.jpg" alt="Professional automotive service technicians" loading="lazy">
+        </div>
+        <p class="card-description">
+            Our certified technicians provide comprehensive maintenance and repair services
+            to keep your vehicle running smoothly and safely on the road.
+        </p>
+    </article>
 
-                    <!-- Call to Action -->
-                    <section class="cta">
-                        <h3>Looking for a new ride?</h3>
-                        <p>Check out our <a href="/inventory">latest inventory</a> today!</p>
-                    </section>
-                </main>
+    <article class="content-card">
+        <h2 class="card-title">Financing Options</h2>
+        <div class="card-image">
+            <img src="/images/site/small_check.jpg" alt="Flexible automotive financing solutions" loading="lazy">
+        </div>
+        <p class="card-description">
+            We work with multiple lenders to provide competitive financing options
+            that fit your budget and help make your dream car affordable.
+        </p>
+    </article>
+</div>
 
-                <%- include('./partials/footer') %>
-    </body>
+<!-- Reviews Section -->
+<section class="reviews-section">
+    <h2 class="reviews-title">What Our Customers Say</h2>
+    <div class="review-grid">
+        <article class="review-card">
+            <div class="stars" aria-label="5 star rating">★★★★★</div>
+            <p class="review-text">
+                "Outstanding service and quality vehicles. The team went above and beyond
+                to help me find the perfect car within my budget."
+            </p>
+            <p class="review-author">- Alouis Kamanga</p>
+        </article>
 
-</html>
+        <article class="review-card">
+            <div class="stars" aria-label="5 star rating">★★★★★</div>
+            <p class="review-text">
+                "Transparent pricing and honest recommendations. I felt confident in my
+                purchase and would definitely buy from CSE Motors again."
+            </p>
+            <p class="review-author">- Jabulani Kalomo</p>
+        </article>
+
+        <article class="review-card">
+            <div class="stars" aria-label="5 star rating">★★★★★</div>
+            <p class="review-text">
+                "Professional staff, quality cars, and excellent after-sales service.
+                Highly recommend CSE Motors for your next vehicle purchase."
+            </p>
+            <p class="review-author">- Douglas Marimbe</p>
+        </article>
+    </div>
+</section>

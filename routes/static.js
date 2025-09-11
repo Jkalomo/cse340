@@ -1,18 +1,45 @@
-const express = require('express');
-const router = express.Router();
-const path = require('path');
+/* ******************************************
+ * This server.js file is the primary file of the 
+ * application. It is used to control the project.
+ *******************************************/
+/* ***********************
+ * Require Statements
+ *************************/
+const express = require("express")
+const env = require("dotenv").config()
+const app = express()
+const static = require("./routes/static")
+const path = require("path")
 
-// Serve all static files from public folder
-router.use(express.static(path.join(__dirname, '..', 'public')));
+/* ***********************
+ * View Engine and Views Folder
+ *************************/
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "ejs")
 
-// Optional: explicit paths (fixed)
-// These are not strictly needed, but if you want them:
-router.use('/css', express.static(path.join(__dirname, '..', 'public', 'css')));
-router.use('/js', express.static(path.join(__dirname, '..', 'public', 'js')));
-router.use('/images', express.static(path.join(__dirname, '..', 'public', 'images')));
+/* ***********************
+ * Routes (includes static file serving)
+ *************************/
+app.use(static)
 
-module.exports = router;
+// Index route
+app.get("/", function(req, res){
+  res.render("index", { title: "Home" })
+})
 
+/* ***********************
+ * Local Server Information
+ * Values from .env (environment) file
+ *************************/
+const port = process.env.PORT || 5500
+const host = process.env.HOST || 'localhost'
+
+/* ***********************
+ * Log statement to confirm server operation
+ *************************/
+app.listen(port, () => {
+  console.log(`app listening on ${host}:${port}`)
+})
 
 
 

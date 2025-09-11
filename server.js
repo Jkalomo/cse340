@@ -6,10 +6,21 @@
  * Require Statements
  *************************/
 const express = require("express")
+const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
-const static = require("./routes/static")
 const path = require("path")
+
+/* ***********************
+ * Static Files Middleware - MUST BE FIRST
+ *************************/
+app.use(express.static(path.join(__dirname, 'public')))
+
+/* ***********************
+ * Express Layouts Configuration
+ *************************/
+app.use(expressLayouts)
+app.set("layout", "layouts/layout")
 
 /* ***********************
  * View Engine and Views Folder
@@ -20,8 +31,6 @@ app.set("view engine", "ejs")
 /* ***********************
  * Routes
  *************************/
-app.use(static)
-
 // Index route
 app.get("/", function(req, res){
   res.render("index", { title: "Home" })
@@ -31,8 +40,8 @@ app.get("/", function(req, res){
  * Local Server Information
  * Values from .env (environment) file
  *************************/
-const port = process.env.PORT
-const host = process.env.HOST
+const port = process.env.PORT || 3000
+const host = process.env.HOST || 'localhost'
 
 /* ***********************
  * Log statement to confirm server operation
