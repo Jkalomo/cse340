@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 /* ******************************************
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
@@ -10,6 +12,7 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const path = require("path")
+const utilities = require("./utilities/")
 
 /* ***********************
  * Static Files Middleware - MUST BE FIRST
@@ -32,8 +35,38 @@ app.set("view engine", "ejs")
  * Routes
  *************************/
 // Index route
-app.get("/", function(req, res){
-  res.render("index", { title: "Home" })
+app.get("/", utilities.handleErrors(async function(req, res, next){
+  let nav = await utilities.getNav()
+  res.render("index", { 
+    title: "Home", 
+    nav 
+  })
+}))
+
+/* ***********************
+ * File Not Found Route - must be last route
+ *************************/
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ 
+    message = err.message
+  } else {
+    message = 'Oh no! There was a crash. Maybe try a different route?'
+  }
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message,
+    nav
+  })
 })
 
 /* ***********************
