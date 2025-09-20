@@ -19,6 +19,11 @@ const utilities = require("./utilities/")
  *************************/
 app.use(express.static(path.join(__dirname, 'public')))
 
+
+// Inventory routes
+const inventoryRoute = require("./routes/inventoryRoute")
+app.use("/inv", inventoryRoute)
+
 /* ***********************
  * Express Layouts Configuration
  *************************/
@@ -82,3 +87,14 @@ const host = process.env.HOST || 'localhost'
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+// Test route for vehicle details
+app.get("/inv/detail/:invId", utilities.handleErrors(async function(req, res, next){
+  let nav = await utilities.getNav()
+  res.render("inventory/detail", { 
+    title: "Vehicle Details", 
+    nav,
+    detailHtml: "<p>Detail system working!</p>"
+  })
+}))
+

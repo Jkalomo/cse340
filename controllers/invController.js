@@ -11,7 +11,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
   const data = await invModel.getInventoryByClassificationId(classification_id)
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
-  const className = data[0].classification_name
+  const className = data[0] ? data[0].classification_name || "Vehicles" : "Vehicles"
   res.render("./inventory/classification", {
     title: className + " vehicles",
     nav,
@@ -25,6 +25,13 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByInventoryId = async function (req, res, next) {
   const inv_id = req.params.invId
   const data = await invModel.getInventoryById(inv_id)
+  
+  if (!data) {
+    const error = new Error("Vehicle not found")
+    error.status = 404
+    throw error
+  }
+  
   const detailHtml = await utilities.buildVehicleDetail(data)
   let nav = await utilities.getNav()
   const vehicleName = `${data.inv_year} ${data.inv_make} ${data.inv_model}`
@@ -35,8 +42,6 @@ invCont.buildByInventoryId = async function (req, res, next) {
   })
 }
 
-module.exports = invCont
-
 /* ***************************
  *  Trigger intentional error for testing
  ************************** */
@@ -45,3 +50,5 @@ invCont.triggerError = async function (req, res, next) {
   error.status = 500
   throw error
 }
+
+module.exports = invCont

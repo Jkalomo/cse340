@@ -676,3 +676,147 @@ main {
 .error-container a:hover {
   text-decoration: underline;
 }
+/* Classification Grid Styles */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+#inv-display li {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+#inv-display li:hover {
+  transform: translateY(-5px);
+}
+
+#inv-display img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.namePrice h2 {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin: 0.5rem 0;
+}
+
+.namePrice span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+/* Vehicle Detail Styles - Responsive Design */
+.vehicle-detail-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.vehicle-detail {
+  display: grid;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  max-width: 500px;
+}
+
+.vehicle-info h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Price formatting with prominent display */
+.price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.vehicle-details p {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.vehicle-details strong {
+  color: #2c3e50;
+  display: inline-block;
+  min-width: 120px;
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #e9ecef;
+}
+
+.description p {
+  line-height: 1.7;
+  color: #555;
+}
+
+/* Large screen layout - side-by-side */
+@media screen and (min-width: 768px) {
+  .vehicle-detail {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .vehicle-image {
+    order: 1;
+  }
+
+  .vehicle-info {
+    order: 2;
+  }
+}
+
+/* Small screen layout - stacked */
+@media screen and (max-width: 767px) {
+  .vehicle-detail {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .vehicle-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+
+  .vehicle-details strong {
+    min-width: 100px;
+  }
+}
